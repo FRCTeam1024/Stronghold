@@ -3,7 +3,6 @@ package org.usfirst.frc1024.Stronghold;
 public class xBox extends edu.wpi.first.wpilibj.Joystick{
 	public xBox(int port) {
 		super(port);
-		// TODO Auto-generated constructor stub
 	}
 	
 	

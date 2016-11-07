@@ -3,7 +3,6 @@ package org.usfirst.frc1024.Stronghold;
 public class Logi extends edu.wpi.first.wpilibj.Joystick{
 	public Logi(int port) {
 		super(port);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public boolean getButtonA(){

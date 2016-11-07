@@ -118,7 +118,8 @@ public class REVDigitBoard {
 	 	osc[0] = (byte)0x21;
 	 	turnOn[0] = (byte)0x81;  //sets the display to not blink and turns display on
 	 	bright[0] = (byte)0xEF;
-
+	 	
+	 	//This stuff turns the digit board on
 		i2c.writeBulk(osc);
 		Timer.delay(.01);
 		i2c.writeBulk(bright);

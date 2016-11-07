@@ -1,20 +1,12 @@
 package org.usfirst.frc1024.Stronghold.commands;
-
-import org.usfirst.frc1024.Stronghold.Logi;
 import org.usfirst.frc1024.Stronghold.Robot;
 import org.usfirst.frc1024.Stronghold.RobotMap;
-
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.RobotState;
 
-/**
- *
- */
 public class StateAndWorldsAuto extends Command {
 	int autoSelected;
 	int position;
@@ -23,18 +15,13 @@ public class StateAndWorldsAuto extends Command {
 	char xPosition = 0;
 
 	public StateAndWorldsAuto(int autoSelected, int position) {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 		this.autoSelected = autoSelected;
 		this.position = position;
 		//this.autoDelay = autoDelay;
 	}
-
-	// Called just before this Command runs the first time
 	protected void initialize() {
 	}
-
-	// Called repeatedly when this Command is scheduled to run
+	//I am so sorry for this long comment :(
 	/*
 	 * protected void execute() { while (!isDone) { if (position != 0) { switch
 	 * (autoSelected) { case 0: // default (2-pointer) Timer.delay(delayTime);
@@ -296,18 +283,11 @@ public class StateAndWorldsAuto extends Command {
 		}
 		isDone = true;
 	}
-
-	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return false;
 	}
-
-	// Called once after isFinished returns true
 	protected void end() {
 	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
 	protected void interrupted() {
 	}
 }
