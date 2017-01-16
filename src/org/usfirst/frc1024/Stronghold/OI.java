@@ -1,7 +1,7 @@
 package org.usfirst.frc1024.Stronghold;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.RumbleType;
 
 
 /**

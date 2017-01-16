@@ -1,9 +1,8 @@
 package org.usfirst.frc1024.Stronghold;
 
-
+import com.ctre.*;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -44,6 +43,8 @@ public class RobotMap {
     public static I2C pixyi2c;
     public static DigitalOutput pixyPower;
     public static Relay photonCannonPower;
+    
+    public static Encoder testEncoder;
     //public static AHRS navx;
     //public static AnalogInput servoIn;
     //public static REVDigitBoard autoChooser;
@@ -100,5 +101,13 @@ public class RobotMap {
         LiveWindow.addActuator("Launcher", "Two", launcherTwo);
         
         LiveWindow.addActuator("SPIKE",  "photonCannon", photonCannonPower);
+        
+        testEncoder = new Encoder(7, 8, false, EncodingType.k4X);
+        RobotMap.testEncoder.startLiveWindowMode();
+        LiveWindow.addActuator("Test", "Encoder", testEncoder);
+        
+        
+        
+        
     }
 }

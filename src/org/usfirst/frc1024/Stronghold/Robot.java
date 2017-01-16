@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 
 		//DO NOT MOVE UNDER ANY CIRCUMSTANCE!!!
 		oi = new OI();
+		RobotMap.testEncoder.setDistancePerPulse(1/250);
 	}
 
 	public void disabledInit() {
@@ -106,8 +107,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		drivetrain.gyro.reset();
-		drivetrain.rightEncoder.reset();
-		drivetrain.leftEncoder.reset();
+		//drivetrain.rightEncoder.reset();
+		//drivetrain.leftEncoder.reset();
 	}
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
@@ -128,6 +129,7 @@ public class Robot extends IterativeRobot {
 		if (oi.logi.getButtonLB() && !oi.logi.getButtonBack()) {
 			intake.up();
 		}
+		
 		if (oi.logi.getAxis("lefty") > 0.10 && !oi.logi.getButtonBack()) {
 			intake.roll(.8);
 		} else if (oi.logi.getAxis("lefty") < -0.10 && oi.logi.getAxis("lefty") > -0.85 && !oi.logi.getButtonBack()) {
@@ -168,11 +170,19 @@ public class Robot extends IterativeRobot {
 						0.5 - ((drivetrain.gyro.getAngle() % 360) / straightConstant));
 			}
 		}
+		if(oi.logi.getButtonB() == true) {
+			RobotMap.drivetrainBackLeft.set(0.5);
+		}
+//		if(oi.logi.getPOV(0) != -1){
+//			RobotMap.drivetrainBackLeft.set(0.1);
+//		}
 		drivetrain.driveMotors(oi.lJoy.getY(), oi.rJoy.getY());
+		//RobotMap.drivetrainBackLeft.set(oi.logi.getAxis("lefty"));
 	}
 
 	public void testPeriodic() {
 		LiveWindow.run();
+		SmartDashboardPrints();
 	}
 	
 	//This method puts updated values on SmartDashboard
@@ -183,6 +193,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("lEncoder Inches", (drivetrain.leftEncoder.getDistance() / 250) * (6 * Math.PI));
 		SmartDashboard.putNumber("rEncoder Feet", (drivetrain.rightEncoder.getDistance() / 250) * (6 * Math.PI) / 12);
 		SmartDashboard.putNumber("lEncoder Feet", (drivetrain.leftEncoder.getDistance() / 250) * (6 * Math.PI) / 12);
+		//SmartDashboard.putNumber("Encoder RPM", (RobotMap.testEncoder.getDistance() / 250));
+		SmartDashboard.putNumber("Encoder RPM", drivetrain.rightEncoder.getDistance()/250);
+		RobotMap.testEncoder.startLiveWindowMode();
 	}
 
 	public static void printPixyStuff(){

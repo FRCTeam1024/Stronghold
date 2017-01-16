@@ -1,10 +1,9 @@
 package org.usfirst.frc1024.Stronghold.subsystems;
 import org.usfirst.frc1024.Stronghold.RobotMap;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import com.ctre.*;
 public class Intake extends Subsystem {
     private final CANTalon leftMotor = RobotMap.intakeLeftMotor;
     private final CANTalon rightMotor = RobotMap.intakeRightMotor;

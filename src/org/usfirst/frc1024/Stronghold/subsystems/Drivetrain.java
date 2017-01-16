@@ -1,8 +1,8 @@
 package org.usfirst.frc1024.Stronghold.subsystems;
 import org.usfirst.frc1024.Stronghold.Robot;
+import com.ctre.*;
 import org.usfirst.frc1024.Stronghold.RobotMap;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
