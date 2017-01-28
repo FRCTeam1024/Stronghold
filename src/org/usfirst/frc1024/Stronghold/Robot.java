@@ -1,5 +1,6 @@
 package org.usfirst.frc1024.Stronghold;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,6 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc1024.Stronghold.commands.*;
 import org.usfirst.frc1024.Stronghold.subsystems.*;
+
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 
 public class Robot extends IterativeRobot {
@@ -43,7 +47,19 @@ public class Robot extends IterativeRobot {
 
 		//DO NOT MOVE UNDER ANY CIRCUMSTANCE!!!
 		oi = new OI();
-		RobotMap.testEncoder.setDistancePerPulse(1/250);
+		RobotMap.drivetrainBackLeft.enableBrakeMode(false);
+		RobotMap.drivetrainBackLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		RobotMap.drivetrainBackLeft.configEncoderCodesPerRev(250);
+		RobotMap.drivetrainBackLeft.configNominalOutputVoltage(+0.0f, -0.0f);
+        RobotMap.drivetrainBackLeft.configPeakOutputVoltage(+12.0f, 0.0f);
+        RobotMap.drivetrainBackLeft.changeControlMode(TalonControlMode.Speed);
+		RobotMap.drivetrainBackLeft.setPIDSourceType(PIDSourceType.kRate);
+		RobotMap.drivetrainBackLeft.setProfile(0);
+		RobotMap.drivetrainBackLeft.setF(0.15);
+		RobotMap.drivetrainBackLeft.setP(0.3);
+		RobotMap.drivetrainBackLeft.setI(0.0);
+		RobotMap.drivetrainBackLeft.setD(0.0);
+		
 	}
 
 	public void disabledInit() {
@@ -109,6 +125,8 @@ public class Robot extends IterativeRobot {
 		drivetrain.gyro.reset();
 		//drivetrain.rightEncoder.reset();
 		//drivetrain.leftEncoder.reset();
+
+		RobotMap.drivetrainBackLeft.setSetpoint(3500);
 	}
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
@@ -170,14 +188,23 @@ public class Robot extends IterativeRobot {
 						0.5 - ((drivetrain.gyro.getAngle() % 360) / straightConstant));
 			}
 		}
+		/*
 		if(oi.logi.getButtonB() == true) {
 			RobotMap.drivetrainBackLeft.set(0.5);
 		}
 //		if(oi.logi.getPOV(0) != -1){
 //			RobotMap.drivetrainBackLeft.set(0.1);
 //		}
-		drivetrain.driveMotors(oi.lJoy.getY(), oi.rJoy.getY());
+		*/
+		//drivetrain.driveMotors(oi.lJoy.getY(), oi.rJoy.getY());
 		//RobotMap.drivetrainBackLeft.set(oi.logi.getAxis("lefty"));
+
+		
+		//RobotMap.drivetrainBackLeft.set(0.8);
+		RobotMap.drivetrainBackLeft.enable();
+		SmartDashboard.putNumber("Talon Encoder", RobotMap.drivetrainBackLeft.getSpeed());
+		
+		
 	}
 
 	public void testPeriodic() {
